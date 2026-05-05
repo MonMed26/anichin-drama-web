@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0b12" />
+  <meta name="description" content="DramaKilat — nonton drama pendek (short drama) gratis dari berbagai platform: ReelShort, ShortMax, DramaNova, dan lainnya." />
+  <title>DramaKilat — Nonton Drama Pendek</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0b0b12',
+            panel: '#15151f',
+            panel2: '#1d1d2a',
+            accent: '#ff3366',
+            accent2: '#ff7a59',
+            mute: '#8a8a9b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.16/dist/hls.min.js"></script>
+</head>
+<body class="bg-bg text-white min-h-screen font-sans">
+  <header class="sticky top-0 z-40 bg-bg/80 backdrop-blur border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3 sm:gap-5">
+      <a href="#/" class="flex items-center gap-2 shrink-0">
+        <span class="text-2xl">🎬</span>
+        <span class="font-extrabold tracking-tight text-lg sm:text-xl bg-gradient-to-r from-accent to-accent2 bg-clip-text text-transparent">DramaKilat</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-4 text-sm text-mute">
+        <a href="#/" class="hover:text-white transition">Trending</a>
+        <a href="#/foryou" class="hover:text-white transition">For You</a>
+      </nav>
+      <form id="searchForm" class="ml-auto flex-1 max-w-md">
+        <div class="relative">
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Cari drama…"
+            class="w-full bg-panel border border-white/5 rounded-full pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent/60 focus:border-transparent"
+          />
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-mute" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" stroke-linecap="round" /></svg>
+        </div>
+      </form>
+      <select id="sourceSelect" class="hidden sm:block bg-panel border border-white/5 rounded-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent/60" title="Pilih sumber drama"></select>
+    </div>
+    <div class="sm:hidden px-4 pb-3">
+      <select id="sourceSelectMobile" class="w-full bg-panel border border-white/5 rounded-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent/60"></select>
+    </div>
+  </header>
+
+  <main id="app" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 min-h-[60vh]"></main>
+
+  <footer class="border-t border-white/5 mt-16 py-8 text-center text-xs text-mute">
+    <p>
+      Dibuat dengan ❤️ — data drama dari
+      <a class="underline hover:text-white" href="https://github.com/NingRong2/anichin-api" target="_blank" rel="noopener">Anichin API</a>.
+    </p>
+    <p class="mt-1">DramaKilat hanyalah aggregator — semua hak konten milik platform sumber masing-masing.</p>
+  </footer>
+
+  <template id="tpl-card">
+    <a class="card group block rounded-xl overflow-hidden bg-panel border border-white/5 hover:border-accent/60 transition relative">
+      <div class="aspect-[2/3] bg-panel2 overflow-hidden relative">
+        <img class="poster w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" alt="" />
+        <span class="ep-badge absolute top-2 right-2 bg-black/70 backdrop-blur text-[11px] px-2 py-0.5 rounded-full hidden">EP</span>
+        <span class="src-badge absolute bottom-2 left-2 bg-accent/90 text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-semibold"></span>
+      </div>
+      <div class="p-3">
+        <h3 class="title font-semibold text-sm leading-snug line-clamp-2 group-hover:text-accent transition"></h3>
+        <p class="meta text-xs text-mute mt-1"></p>
+      </div>
+    </a>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
